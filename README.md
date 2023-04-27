@@ -1,3 +1,3 @@
-# 
+# Wishlist
 
-RimuEirnarn's implementation of 
+RimuEirnarn's implementation of Wishlist
