@@ -13,6 +13,10 @@ wishlist = database.wishlist
 
 app = Flask(__name__)
 
+def validate(c):
+    if len(c) >= 512:
+        return 400, "Bucket content length exceed the limit"
+    return None, None
 
 @app.route('/')
 def home():
@@ -22,6 +26,9 @@ def home():
 @app.route("/bucket", methods=["POST"])
 def bucket_post():
     content = request.form['content']
+    c, r = validate(content)
+    if c:
+        return r, c
     bucket_id = wishlist.count_documents({})+1
     wishlist.insert_one({
         'bucket_id': bucket_id,

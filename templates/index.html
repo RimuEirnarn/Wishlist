@@ -106,6 +106,13 @@
 
             function validate() {
                 let bucket = $("#bucket").val()
+                let ERR_LENGTH = "Bucket length must not be more than 512 bytes"
+                if (bucket.length >= 512) {
+                    let inv = $("#invalid-bucket")
+                    inv.text(ERR_LENGTH)
+                    inv.show()
+                    throw new Error(ERR_LENGTH)
+                }
                 if (bucket == '') {
                     let inv = $("#invalid-bucket")
                     inv.text("Bucket must not empty!")
